@@ -1,0 +1,14 @@
+.bundle
+.idea/
+.rvmrc
+.rbenv-version
+.rsync_cache/
+log/*.*
+tmp/
+*.tmproj
+*.sublime-*
+public/stylesheets/compiled/
+gitstats/
+.sass-cache/
+.DS_Store
+vendor/bundle
