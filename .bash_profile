@@ -11,3 +11,5 @@ fi
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+
+alias be="bundle exec"
