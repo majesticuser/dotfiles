@@ -13,3 +13,4 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 alias be="bundle exec"
+alias ducks='du -cks * | sort -nr | grep -v total | head -n 10'
