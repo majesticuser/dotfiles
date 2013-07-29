@@ -63,3 +63,4 @@ tmp/
 *.tmproj
 *.sublime-*
 gitstats/
+.DS_Store
