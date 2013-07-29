@@ -8,6 +8,7 @@ if [ -f `brew --prefix`/usr/local/etc/bash_completion ]; then
     . `brew --prefix`/usr/local/etc/bash_completion
 fi
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
