@@ -1,10 +1,5 @@
 set nocompatible " be iMproved
 
-" needed for nelstrom/vim-textobj-rubyblock Bundle
-if has("autocmd")
-  filetype indent plugin on
-endif
-
 " ----------- "
 " Vim Plugins "
 " ----------- "
@@ -21,9 +16,12 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-endwise'
+Bundle 'thoughtbot/vim-rspec'
 
 " Helpers
 Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+"Bundle 'vim-scripts/taglist.vim'
 
 " Editing plugins
 Bundle 'kana/vim-textobj-user'
@@ -33,6 +31,11 @@ Bundle 'tpope/vim-surround'
 " Color/theme plugins
 Bundle 'vim-scripts/Lucius'
 
+" needed for nelstrom/vim-textobj-rubyblock Bundle
+if has("autocmd")
+  filetype indent plugin on
+endif
+
 " ---------------- "
 " General settings "
 " ---------------- "
@@ -40,6 +43,9 @@ Bundle 'vim-scripts/Lucius'
 set title " Set the terminal's title
 set encoding=utf-8
 syntax on
+
+" A more german keyboard friendly mapleader
+let mapleader = ","
 
 " ----------- "
 " Colorscheme "
@@ -79,3 +85,9 @@ set expandtab " Use spaces instead of tabs
 " --------- "
 
 map <C-n> :NERDTreeToggle<CR>
+
+" Rspec.vim mappings
+map <Leader>t :call RunNearestSpec()<CR>
+map <Leader>T :call RunCurrentSpecFile()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
