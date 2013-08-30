@@ -10,10 +10,18 @@ export NODE_PATH=/usr/local/lib/node_modules
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+# see http://mywiki.wooledge.org/BashFAQ/088#preview
+HISTFILESIZE=400000000 # Size of the history file
+HISTSIZE=10000 # Size of the history in memory
+PROMPT_COMMAND="history -a" # this command will be executed after each exectuted command
+export HISTSIZE PROMPT_COMMAND
+shopt -s histappend # this enables appending commands immediately to the history
+
 # ------- #
 # Aliases #
 # ------- #
 
+alias l='ls -FAlah'
 alias be="bundle exec"
 alias ducks='du -cks * | sort -nr | grep -v total | head -n 10'
 alias vim='mvim -v'
@@ -28,6 +36,10 @@ function vmware () {
     return
   fi
   vmrun $2 ~/Documents/Virtual\ Machines.localized/$1.vmwarevm/$1.vmx nogui
+}
+
+function cdl() {
+  cd $1; l
 }
 
 # ---------------- #
