@@ -18,6 +18,7 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 alias be="bundle exec"
 alias ducks='du -cks * | sort -nr | grep -v total | head -n 10'
+alias vim='mvim -v'
 
 function vmware () {
   if [ -z "$1" ] || [ -z "$2" ]; then
