@@ -2,6 +2,8 @@
 # Environment variables #
 # --------------------- #
 
+export EDITOR="vim"
+
 export M2_HOME=/Users/virginio/Java/maven-3
 export PATH=$M2_HOME/bin:/usr/local/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":$PATH
 export NODE_PATH=/usr/local/lib/node_modules
@@ -9,6 +11,9 @@ export NODE_PATH=/usr/local/lib/node_modules
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# colored grep
+export GREP_OPTIONS='--color=auto'
 
 # see http://mywiki.wooledge.org/BashFAQ/088#preview
 HISTFILESIZE=400000000 # Size of the history file
@@ -21,8 +26,11 @@ shopt -s histappend # this enables appending commands immediately to the history
 # Aliases #
 # ------- #
 
+# Reload the .bash_profile
+alias rl="source ~/.bash_profile"
+
 alias l='ls -FAlah'
-alias be="bundle exec"
+alias b="bundle exec"
 alias ducks='du -cks * | sort -nr | grep -v total | head -n 10'
 alias vim='mvim -v'
 
@@ -59,6 +67,8 @@ if [ -f `brew --prefix`/usr/local/etc/bash_completion ]; then
 fi
 
 source ~/.git-completion.sh
+
+# the prompt
 PS1='\[\033[0;36m\][\W$(__git_ps1 " (%s)")]\[\033[0m\] '
 
 # Add rbenv's shims directory to $PATH and set up Bash autocompletion
