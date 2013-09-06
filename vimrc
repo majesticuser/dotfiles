@@ -81,6 +81,13 @@ set tabstop=2 " Global tab width.
 set expandtab " Use spaces instead of tabs
 
 " --------- "
+" Behaviour "
+" --------- "
+
+set wildmenu " Enhanced command line completion.
+set visualbell " No beeping.
+
+" --------- "
 "  Mappings "
 " --------- "
 
