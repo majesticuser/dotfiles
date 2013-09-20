@@ -12,15 +12,15 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-" Syntax/language/framework plugins
-Bundle 'tpope/vim-rails'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-endwise'
-Bundle 'thoughtbot/vim-rspec'
-
 " Helpers
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
+Bundle 'skwp/greplace.vim'
+Bundle 'tpope/vim-commentary'
+Bundle 'vim-scripts/Rename2'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
 "Bundle 'vim-scripts/taglist.vim'
 
 " Editing plugins
@@ -30,6 +30,14 @@ Bundle 'tpope/vim-surround'
 
 " Color/theme plugins
 Bundle 'vim-scripts/Lucius'
+
+" Syntax/language/framework plugins
+Bundle 'tpope/vim-rails'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-endwise'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'vim-scripts/Markdown'
+Bundle 'scrooloose/syntastic'
 
 " needed for nelstrom/vim-textobj-rubyblock Bundle
 if has("autocmd")
@@ -78,7 +86,15 @@ runtime macros/matchit.vim
 
 set autoindent
 set tabstop=2 " Global tab width.
+set shiftwidth=2 " And again, related.
 set expandtab " Use spaces instead of tabs
+
+" --------- "
+" Clipboard "
+" --------- "
+
+" Uses the system clipboard as the default register
+set clipboard=unnamed
 
 " --------- "
 " Behaviour "
@@ -86,6 +102,23 @@ set expandtab " Use spaces instead of tabs
 
 set wildmenu " Enhanced command line completion.
 set visualbell " No beeping.
+
+set showcmd " Display incomplete commands.
+set showmode " Display the mode you're in.
+set backspace=indent,eol,start " Intuitive backspacing.
+
+" ------ "
+" Search "
+" ------ "
+
+set hlsearch " Highlight matches.
+set incsearch " Highlight matches as you type.
+
+" ---------- "
+" EasyMotion "
+" ---------- "
+
+let g:EasyMotion_leader_key = 'ö'
 
 " --------- "
 "  Mappings "
