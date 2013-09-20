@@ -53,6 +53,7 @@ node_modules
 .rsync_cache/
 tmp/
 .sass-cache/
+*.swp
 
 # Miscellanoius #
 #################
