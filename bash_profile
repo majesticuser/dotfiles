@@ -4,8 +4,7 @@
 
 export EDITOR="vim"
 
-export M2_HOME=/Users/virginio/Java/maven-3
-export PATH=$M2_HOME/bin:/usr/local/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":$PATH
+export PATH=/usr/local/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":$PATH
 export NODE_PATH=/usr/local/lib/node_modules
 
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
@@ -51,7 +50,7 @@ function cdl() {
 }
 
 # ---------------- #
-# External scripts #
+# Auto completions #
 # ---------------- #
 
 # This was prompted to be installed by the cdargs brew formula
@@ -68,11 +67,21 @@ fi
 
 source ~/.git-completion.sh
 
-# the prompt
+source ~/projects/dotfiles/tmuxinator-completion.sh
+
+# ---------- #
+# The prompt #
+# ---------- #
+#
 PS1='\[\033[0;36m\][\W$(__git_ps1 " (%s)")]\[\033[0m\] '
+
+# ---- #
+# Misc #
+# ---- #
 
 # Add rbenv's shims directory to $PATH and set up Bash autocompletion
 if which rbenv &> /dev/null; then
   eval "$(rbenv init -)"
 fi
 
+ssh-add
