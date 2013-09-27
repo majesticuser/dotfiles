@@ -1,0 +1,20 @@
+# ~/.tmuxinator/data_analyzer.yml
+
+name: data-analyzer
+root: ~/projects/mars/data_analyzer
+
+# Optional tmux socket
+# socket_name: foo
+
+# Starts the epic-localvm before proceding with tmux session. We need to wait until ssh is avalailable.
+pre: vmrun start ~/Documents/Virtual\ Machines.localized/epic-localvm.vmwarevm/epic-localvm.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+windows:
+  - editor: vim
+  - server: bundle exec ruby start_web_app.rb
