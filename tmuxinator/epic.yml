@@ -17,6 +17,8 @@ pre: vmrun start ~/Documents/Virtual\ Machines.localized/epic-localvm.vmwarevm/e
 
 windows:
   - editor: vim
+  - shell: 
+  - vm: ssh epic-localvm  
   - rails c: bundle exec rails c
   - psql:  ssh epic-localvm psql -U epicdb epic_relations_development
   - rails s: bundle exec rails s
