@@ -27,6 +27,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'tpope/vim-surround'
+Bundle 'godlygeek/tabular'
 
 " Color/theme plugins
 Bundle 'vim-scripts/Lucius'
