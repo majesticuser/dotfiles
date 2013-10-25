@@ -1,3 +1,22 @@
+[alias]
+  s = status
+  a = add
+  c = commit
+  b = branch
+  co = checkout
+  pr = pull --rebase
+  d = diff
+  l = log --oneline --decorate
+  lp = log -p
+  lgd = log --graph --decorate --pretty=oneline --abbrev-commit
+  ls = ls-files
+  # Show files ignored by git:
+  ign = ls-files -o -i --exclude-standard
+  # History of deleted files
+  ldf = log --diff-filter=D --summary
+  # Delete deleted remote branches
+  rprune = remote prune origin
+
 [user]
 	name = Virginio Carfagno
 	email = virginio.carfagno@mindmatters.de
@@ -7,22 +26,8 @@
   diff = auto
   branch = auto
 
-[alias]
-  st = status
-  ci = commit
-  br = branch
-  co = checkout
-  df = diff
-  dc = diff --cached
-  lg = log -p
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  ls = ls-files
-
-  # Show files ignored by git:
-  ign = ls-files -o -i --exclude-standard
 [core]
-	excludesfile = /Users/virginio/.gitignore
+	excludesfile = ~/.gitignore
 
 [push]
   default = upstream
