@@ -3,25 +3,20 @@
 name: epic
 root: ~/projects/epic-relations
 
-# Optional tmux socket
-# socket_name: foo
-
 # Starts the epic-localvm before proceding with tmux session. We need to wait until ssh is avalailable.
-pre: vmrun start ~/Documents/Virtual\ Machines.localized/epic-localvm.vmwarevm/epic-localvm.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
-
-# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: rbenv shell 2.0.0-p247
-
-# Pass command line options to tmux. Useful for specifying a different tmux.conf.
-# tmux_options: -f ~/.tmux.mac.conf
+# We reset the RBENV environment variables as tmuxinator sets the RBENV environment variables and in consequence .ruby-version files would not be evaluated.
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
+  - vmrun start ~/Documents/Virtual\ Machines.localized/epic-localvm.vmwarevm/epic-localvm.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
 
 windows:
   - editor: vim
   - shell: 
   - vm: ssh epic-localvm  
+  - rails s: bundle exec rails s
   - rails c: bundle exec rails c
   - psql:  ssh epic-localvm psql -U epicdb epic_relations_development
-  - rails s: bundle exec rails s
   - vm logs:
       layout: tiled
       panes:
