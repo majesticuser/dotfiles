@@ -95,7 +95,7 @@ set expandtab " Use spaces instead of tabs
 " --------- "
 
 " Uses the system clipboard as the default register
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " --------- "
 " Behaviour "
