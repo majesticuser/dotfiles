@@ -128,6 +128,9 @@ let g:EasyMotion_leader_key = 'ö'
 map <C-n> :NERDTreeToggle<CR>
 
 " Rspec.vim mappings
+
+let g:rspec_command = "!bundle exec rspec {spec}"
+
 map <Leader>t :call RunNearestSpec()<CR>
 map <Leader>T :call RunCurrentSpecFile()<CR>
 map <Leader>l :call RunLastSpec()<CR>
