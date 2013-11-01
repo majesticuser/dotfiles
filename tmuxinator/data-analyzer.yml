@@ -1,4 +1,4 @@
-# ~/.tmuxinator/data_analyzer.yml
+# ~/.tmuxinator/data-analyzer.yml
 
 name: data-analyzer
 root: ~/projects/mars/data_analyzer
