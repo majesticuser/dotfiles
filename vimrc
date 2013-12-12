@@ -21,6 +21,7 @@ Bundle 'vim-scripts/Rename2'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'benmills/vimux'
 "Bundle 'vim-scripts/taglist.vim'
 
 " Editing plugins
@@ -36,7 +37,7 @@ Bundle 'vim-scripts/Lucius'
 Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-endwise'
-Bundle 'thoughtbot/vim-rspec'
+Bundle 'skalnik/vim-vroom'
 Bundle 'vim-scripts/Markdown'
 Bundle 'scrooloose/syntastic'
 
@@ -127,15 +128,20 @@ let g:EasyMotion_leader_key = 'ö'
 
 map <C-n> :NERDTreeToggle<CR>
 
-" Rspec.vim mappings
+" vroom mappings
+let g:vroom_map_keys = 0
+let g:vroom_write_all = 1
+let g:vroom_use_vimux = 1
+map <leader>t :VroomRunNearestTest<cr>
+map <leader>T :VroomRunTestFile<cr>
 
-let g:rspec_command = "!bundle exec rspec {spec}"
-
-map <Leader>t :call RunNearestSpec()<CR>
-map <Leader>T :call RunCurrentSpecFile()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-
+" vimux mappings
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "40"
+map <leader>vl :VimuxRunLastCommand<cr>
+map <leader>vi :VimuxInspectRunner<cr>
+map <leader>vq :VimuxCloseRunner<cr>
+map <leader>vp :VimuxPromptCommand<cr>
 
 " Clear the search highlighting when hitting return
 function! MapCR()
