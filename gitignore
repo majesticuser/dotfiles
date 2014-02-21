@@ -65,3 +65,4 @@ tmp/
 *.sublime-*
 gitstats/
 .DS_Store
+bower
