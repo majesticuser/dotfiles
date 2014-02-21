@@ -1,0 +1,4 @@
+set show-author = abbreviated
+set show-date = relative
+set show-line-numbers = true
+set line-number-interval = 1
