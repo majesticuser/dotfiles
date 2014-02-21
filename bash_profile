@@ -4,7 +4,7 @@
 
 export EDITOR="vim"
 
-export PATH=/usr/local/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":$PATH
+export PATH=/usr/local/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":/Applications/riak/rel/riak/bin:$PATH
 export NODE_PATH=/usr/local/lib/node_modules
 
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
