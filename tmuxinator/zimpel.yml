@@ -1,19 +1,19 @@
-# ~/.tmuxinator/epic.yml
+# ~/.tmuxinator/zimpel.yml
 
-name: epic
-root: ~/projects/epic-relations
+name: zimpel
+root: ~/projects/zimpel
 
 # Starts the epic-localvm before proceding with tmux session. We need to wait until ssh is avalailable.
 # We reset the RBENV environment variables as tmuxinator sets the RBENV environment variables and in consequence .ruby-version files would not be evaluated.
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
-  - vmrun start ~/Documents/Virtual\ Machines.localized/epic-localvm.vmwarevm/epic-localvm.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
+  - vmrun start ~/Documents/Virtual\ Machines.localized/zimpel.vmwarevm/zimpel.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
 
 windows:
   - editor: vim
   - shell: 
-  - vm: ssh epic-localvm  
+  - vm: ssh root@epic-localvm  
   - rails s: bundle exec rails s
   - rails c: bundle exec rails c
   - psql:  ssh epic-localvm psql -U epicdb epic_relations_development
