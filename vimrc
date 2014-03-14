@@ -79,6 +79,9 @@ set cursorline
 autocmd WinLeave * set nocursorline
 autocmd WinEnter * set cursorline
 
+" Standsout (s) and bolds (b) the showmode Message (M)
+set highlight=Msb
+
 " ------- "
 " Editing "
 " ------- "
