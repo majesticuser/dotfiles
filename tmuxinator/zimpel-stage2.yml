@@ -1,6 +1,6 @@
-# ~/.tmuxinator/epic-stage2.yml
+# ~/.tmuxinator/zimpel-stage2.yml
 
-name: epic-stage2
+name: zimpel-stage2
 root: ~/
 
 windows:

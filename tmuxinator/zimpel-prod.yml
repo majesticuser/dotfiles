@@ -1,6 +1,6 @@
-# ~/.tmuxinator/epic-prod.yml
+# ~/.tmuxinator/zimpel-prod.yml
 
-name: epic-prod
+name: zimpel-prod
 root: ~/
 
 windows:
