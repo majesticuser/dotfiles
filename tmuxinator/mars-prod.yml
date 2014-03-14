@@ -1,0 +1,8 @@
+# ~/.tmuxinator/mars-prod.yml
+
+name: mars-prod
+root: ~/
+
+windows:
+  - shell: "ssh mars.newsaktuell.de" 
+  - mars.log: "ssh mars.newsaktuell.de tail -f /var/log/mars/mars.log"
