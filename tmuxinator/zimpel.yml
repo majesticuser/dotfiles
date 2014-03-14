@@ -20,6 +20,7 @@ windows:
   - vm: ssh root@epic-localvm  
   - "rails s": bundle exec rails s
   - "rails c": bundle exec rails c
+  - "ri": bundle exec ri
   - psql:  ssh epic-localvm psql -U epicdb epic_relations_development
   - "vm logs":
       layout: tiled
