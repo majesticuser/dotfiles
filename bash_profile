@@ -85,4 +85,8 @@ if which rbenv &> /dev/null; then
   eval "$(rbenv init -)"
 fi
 
+# Use vi bindings instead of the default emacs bindings
+# To list the current bindings user "bind -P"
+set -o vi
+
 ssh-add
