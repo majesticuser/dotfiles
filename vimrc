@@ -137,7 +137,7 @@ map <leader>T :VroomRunTestFile<cr>
 
 " vimux mappings
 let g:VimuxOrientation = "h"
-let g:VimuxHeight = "40"
+let g:VimuxHeight = "50"
 map <leader>vl :VimuxRunLastCommand<cr>
 map <leader>vi :VimuxInspectRunner<cr>
 map <leader>vq :VimuxCloseRunner<cr>
