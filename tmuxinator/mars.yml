@@ -7,9 +7,8 @@ root: /Users/virginio/projects/mars
 # We reset the RBENV environment variables as tmuxinator sets the RBENV environment variables and in consequence .ruby-version files would not be evaluated.
 pre:
   - vmrun start /Users/virginio/Documents/Virtual\ Machines.localized/zimpel.vmwarevm/zimpel.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
-  - open https://mindmatters.kanbanize.com/ctrl_board/4
   - open /Applications/Sequel\ Pro.app
-  - open /Applications/IntelliJ\ IDEA\ 11.app
+  - open /Applications/IntelliJ\ IDEA\ 13\ CE.app
   - open /Applications/FreeMind.app 
 
 windows:

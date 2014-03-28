@@ -11,8 +11,6 @@ pre:
   - vmrun start /Users/virginio/Documents/Virtual\ Machines.localized/zimpel.vmwarevm/zimpel.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
   - open /Applications/FreeMind.app
   - open /Applications/pgAdmin3.app
-  - open https://mindmatters.kanbanize.com/ctrl_board/4
-  - open https://github.com/mindmatters/epic-relations/wiki/Code-Reviews
 
 windows:
   - editor: vim
@@ -21,11 +19,7 @@ windows:
   - "rails s": bundle exec rails s
   - "rails c": bundle exec rails c
   - "ri": bundle exec ri
-  - psql:  ssh epic-localvm psql -U epicdb epic_relations_development
-  - "vm logs":
-      layout: tiled
-      panes:
-        - ssh epic-localvm "tail -f /var/log/tomcat/catalina.out"
-        - ssh epic-localvm "tail -f /srv/epic/shared/log/development/application.log"
-        - ssh epic-localvm "tail -f /srv/epic/shared/log/development/mailer.log"
-        - ssh epic-localvm "tail -f /srv/epic/shared/log/development/importer.log"
+  - "application.log": tail -f log/development/application.log
+  - "importer.log": tail -f log/development/importer.log
+  - "mailer.log": ssh epic-localvm "tail -f /srv/epic/shared/log/development/mailer.log" 
+  - "catalina.out": ssh epic-localvm "tail -f /var/log/tomcat/catalina.out"
