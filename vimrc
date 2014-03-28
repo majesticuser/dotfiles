@@ -29,6 +29,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'tpope/vim-surround'
 Bundle 'godlygeek/tabular'
+Bundle 'ecomba/vim-ruby-refactoring'
 
 " Color/theme plugins
 Bundle 'vim-scripts/Lucius'
@@ -66,6 +67,9 @@ let g:solarized_termcolors=256
 let g:solarized_visibility = "low"
 
 colorscheme lucius
+"LuciusBlack
+"LuciusDark
+"LuciusDarkHighContrast
 
 " ---------- "
 " Appearance "
