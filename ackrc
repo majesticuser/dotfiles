@@ -11,3 +11,6 @@
 --ignore-dir=log
 --ignore-dir=.idea
 --ignore-dir=gitstats
+--ignore-dir=coverage
+
+--ignore-file=is:tags
