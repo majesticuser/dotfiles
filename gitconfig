@@ -28,6 +28,9 @@
 
 [core]
 	excludesfile = ~/.gitignore
+	precomposeunicode = true
 
 [push]
   default = upstream
+[credential]
+	helper = osxkeychain
