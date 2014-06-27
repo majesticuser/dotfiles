@@ -23,6 +23,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'benmills/vimux'
 "Bundle 'vim-scripts/taglist.vim'
+Bundle 'rizzatti/dash.vim'
 
 " Editing plugins
 Bundle 'kana/vim-textobj-user'
@@ -30,6 +31,7 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'tpope/vim-surround'
 Bundle 'godlygeek/tabular'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'jwhitley/vim-matchit'
 
 " Color/theme plugins
 Bundle 'vim-scripts/Lucius'
@@ -134,6 +136,8 @@ let g:EasyMotion_leader_key = 'ö'
 " --------- "
 
 map <C-n> :NERDTreeToggle<CR>
+
+:nmap <silent> <leader>d <Plug>DashSearch
 
 " vroom mappings
 let g:vroom_map_keys = 0
