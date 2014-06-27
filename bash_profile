@@ -87,6 +87,6 @@ fi
 
 # Use vi bindings instead of the default emacs bindings
 # To list the current bindings user "bind -P"
-set -o vi
+# set -o vi
 
 ssh-add
