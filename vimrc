@@ -131,6 +131,23 @@ set incsearch " Highlight matches as you type.
 
 let g:EasyMotion_leader_key = 'ö'
 
+" ----------- "
+"  Functions  "
+" ----------- "
+
+" Helper for aligning table-like array as I use in Sequel-based tests.
+function! AlignTable()
+  '<,'>Tabularize /,
+  '<,'>Tabularize /[
+  '<,'>Tabularize /]
+endfunction
+
+" Clear the search highlighting when hitting return
+function! MapCR()
+  nnoremap <cr> :nohlsearch<cr>
+endfunction
+call MapCR()
+
 " --------- "
 "  Mappings "
 " --------- "
@@ -154,8 +171,5 @@ map <leader>vi :VimuxInspectRunner<cr>
 map <leader>vq :VimuxCloseRunner<cr>
 map <leader>vp :VimuxPromptCommand<cr>
 
-" Clear the search highlighting when hitting return
-function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
-endfunction
-call MapCR()
+vnoremap <leader>a :call AlignTable()<cr>
+nnoremap <leader>A Vi(k:call AlignTable()<cr>
