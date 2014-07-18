@@ -131,6 +131,13 @@ set incsearch " Highlight matches as you type.
 
 let g:EasyMotion_leader_key = 'ö'
 
+" ---------- "
+" Misc       "
+" ---------- "
+
+" swap files will be saved in the following directory
+:set dir=~/tmp
+
 " ----------- "
 "  Functions  "
 " ----------- "
