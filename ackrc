@@ -5,6 +5,7 @@
 --type-add=scss=.scss
 
 --ignore-dir=.rsync_cache
+--ignore-dir=.sass-cache
 --ignore-dir=vendor/bundle
 --ignore-dir=tmp
 --ignore-dir=public/javascripts/compiled
