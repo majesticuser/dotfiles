@@ -16,4 +16,5 @@ windows:
   - mars.log: "tail -f log/mars.log"
   - mars.migration.log: "tail -f log/mars.migration.log"
   - mars.service.log: "tail -f log/mars.service.log"
+  - mars.import.log: "tail -f log/mars.import.log"
   - mars.export.log: "tail -f log/mars.export.log"
