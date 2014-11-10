@@ -22,5 +22,5 @@ windows:
   - "application.log": tail -f log/development/application.log
   - "importer.log": tail -f log/development/importer.log
   - "mailer.log": ssh epic-localvm "tail -f /srv/epic/shared/log/development/mailer.log" 
-  - "catalina.out": ssh epic-localvm "tail -f /var/log/tomcat/catalina.out"
+  - "catalina.out": ssh epic-localvm "tail -f /var/log/tomcat/solr.log"
   - sass: ./script/assets.sh watch
