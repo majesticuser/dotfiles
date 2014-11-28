@@ -1,0 +1,13 @@
+# ~/.tmuxinator/zimpel-elk.yml
+
+name: zimpel-elk
+root: /Users/virginio/projects/zimpel-elk
+
+pre:
+  - open "http://localhost:9200/_plugin/head/"
+  - open "http://localhost:5601/" 
+
+windows:
+  - elasticsearch: "elasticsearch"
+  - logstash: "logstash -f logstash.conf"
+  - kibana: "kibana-4.0.0-BETA2/bin/kibana"
