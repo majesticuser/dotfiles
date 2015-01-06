@@ -24,6 +24,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'benmills/vimux'
 "Bundle 'vim-scripts/taglist.vim'
 Bundle 'rizzatti/dash.vim'
+Bundle 'henrik/vim-yaml-flattener'
 
 " Editing plugins
 Bundle 'kana/vim-textobj-user'
