@@ -139,6 +139,8 @@ let g:EasyMotion_leader_key = 'ö'
 " swap files will be saved in the following directory
 :set dir=~/tmp
 
+au BufRead,BufNewFile *.thor set filetype=ruby
+
 " ----------- "
 "  Functions  "
 " ----------- "
