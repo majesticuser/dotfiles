@@ -8,6 +8,8 @@ pre:
   - open "http://localhost:5601/" 
 
 windows:
+  - editor: vim
+  - shell: 
   - elasticsearch: "elasticsearch"
   - logstash: "logstash -f logstash.conf"
   - kibana: "kibana-4.0.0-BETA2/bin/kibana"
