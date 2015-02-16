@@ -1,0 +1,15 @@
+# ~/.tmuxinator/zimpel-elk.yml
+
+name: analyze-importer-logs
+root: /Users/virginio/projects/analyze_importer_logs
+
+pre:
+  - open "http://localhost:9200/_plugin/head/"
+  - open "http://localhost:5601/" 
+
+windows:
+  - editor: vim
+  - shell: 
+  - elasticsearch: "elasticsearch"
+  - logstash: "logstash -f /Users/virginio/projects/analyze_importer_logs/logstash.conf"
+  - kibana: "/Users/virginio/projects/zimpel-elk/kibana-4.0.0-BETA2/bin/kibana"

@@ -19,8 +19,10 @@ windows:
   - "rails s": bundle exec rails s
   - "rails c": bundle exec rails c
   - "ri": bundle exec ri
-  - "application.log": tail -f log/development/application.log
-  - "importer.log": tail -f log/development/importer.log
-  - "mailer.log": ssh epic-localvm "tail -f /srv/epic/shared/log/development/mailer.log" 
+  - "application.log (test)": tail -f log/test/application.log
+  - "application.log (dev)": tail -f log/development/application.log
+  - "importer.log (dev)": tail -f log/development/importer.log
+  - "mailer.log (dev)": ssh epic-localvm "tail -f /srv/epic/shared/log/development/mailer.log" 
+  - "deployment.log": tail -f log/deployment.log
   - "catalina.out": ssh epic-localvm "tail -f /var/log/tomcat/solr.log"
   - sass: ./script/assets.sh watch
