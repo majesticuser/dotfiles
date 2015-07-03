@@ -43,7 +43,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-endwise'
 Bundle 'skalnik/vim-vroom'
 Bundle 'vim-scripts/Markdown'
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 
 " needed for nelstrom/vim-textobj-rubyblock Bundle
 if has("autocmd")
