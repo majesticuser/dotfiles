@@ -163,6 +163,7 @@ call MapCR()
 " --------- "
 
 map <C-n> :NERDTreeToggle<CR>
+map <C-k> :NERDTreeFind<CR>
 
 :nmap <silent> <leader>d <Plug>DashSearch
 
