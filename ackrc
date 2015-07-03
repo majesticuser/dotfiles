@@ -7,11 +7,14 @@
 --ignore-dir=.rsync_cache
 --ignore-dir=.sass-cache
 --ignore-dir=vendor/bundle
+--ignore-dir=assets/.bundle
+--ignore-dir=documentation
 --ignore-dir=tmp
 --ignore-dir=public/javascripts/compiled
 --ignore-dir=log
 --ignore-dir=.idea
 --ignore-dir=gitstats
 --ignore-dir=coverage
+--ignore-dir=.yardoc
 
 --ignore-file=is:tags
