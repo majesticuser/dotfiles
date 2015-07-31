@@ -30,7 +30,6 @@ public/stylesheets/compiled/
 ######################
 .DS_Store?
 ehthumbs.db
-Icon?
 Thumbs.db
 
 # Tag dirs of vim bundles #
