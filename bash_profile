@@ -90,4 +90,6 @@ fi
 # To list the current bindings user "bind -P"
 # set -o vi
 
+source /usr/local/opt/nvm/nvm.sh
+
 ssh-add
