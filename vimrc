@@ -43,12 +43,14 @@ Plugin 'Townk/vim-autoclose'
 
 " Color/theme plugins
 Plugin 'vim-scripts/Lucius'
+Plugin 'tomasr/molokai'
+Plugin 'chriskempson/vim-tomorrow-theme'
 
 " Syntax/language/framework plugins
 Plugin 'tpope/vim-rails'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-endwise'
-Plugin 'skalnik/vim-vroom'
+Plugin 'janko-m/vim-test'
 Plugin 'vim-scripts/Markdown'
 Plugin 'scrooloose/syntastic'
 Plugin 'ap/vim-css-color'
@@ -87,9 +89,17 @@ let g:solarized_termcolors=256
 let g:solarized_visibility = "low"
 
 colorscheme lucius
+"LuciusLightHighContrast
 "LuciusBlack
 "LuciusDark
 "LuciusDarkHighContrast
+
+"colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night-Eighties
+
+" colorscheme molokai
+" let g:rehash256 = 1
+" let g:molokai_original = 1
 
 " ---------- "
 " appearance "
@@ -227,22 +237,32 @@ map <C-b> :CtrlPBuffer<CR>
 " let g:multi_cursor_quit_key='<Esc>'
 " let g:multi_cursor_start_key='<C-m>'
 
-" ----- "
-" vroom "
-" ----- "
+" -------- "
+" vim-test "
+" -------- "
 
-let g:vroom_map_keys = 0
-let g:vroom_write_all = 1
-let g:vroom_use_vimux = 1
-map <leader>t :VroomRunNearestTest<cr>
-map <leader>T :VroomRunTestFile<cr>
+" basic | vimux
+let test#strategy = "vimux"
+
+let test#ruby#rspec#executable = 'bundle exec rspec'
+
+let test#javascript#jasmine#executable = 'npm test'
+let test#javascript#jasmine#file_pattern = '.*Spec\.coffee$'
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 " ----- "
 " vimux "
 " ----- "
 
-let g:VimuxOrientation = "h"
-let g:VimuxHeight = "50"
+" let g:VimuxOrientation = "h"
+" let g:VimuxHeight = "50"
+let g:VimuxOrientation = "v"
+let g:VimuxHeight = "40"
 map <leader>vl :VimuxRunLastCommand<cr>
 map <leader>vi :VimuxInspectRunner<cr>
 map <leader>vq :VimuxCloseRunner<cr>
