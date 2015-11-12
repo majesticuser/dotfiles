@@ -8,20 +8,17 @@ root: /Users/virginio/projects/zimpel
 pre:
   - export RBENV_DIR=
   - export RBENV_VERSION=
-  - vmrun start /Users/virginio/Documents/Virtual\ Machines.localized/zimpel.vmwarevm/zimpel.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
-  - open /Applications/FreeMind.app
-  - open /Applications/pgAdmin3.app
+  - vmrun start /Users/virginio/Documents/Virtual\ Machines.localized/zimpel-neu.vmwarevm/zimpel-neu.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
 
 windows:
   - editor: vim
   - shell: 
   - vm: ssh root@epic-localvm  
-  - "rails s": BUNDLE_GEMFILE=Gemfile.devel bundle exec rails s
-  - "rails c": BUNDLE_GEMFILE=Gemfile.devel bundle exec rails c
+  - "rails s": bundle exec rails s #BUNDLE_GEMFILE=Gemfile.devel bundle exec rails s
+  - "rails c": bundle exec rails c #BUNDLE_GEMFILE=Gemfile.devel bundle exec rails c
   - "application.log (test)": tail -f log/test/application.log
   - "application.log (dev)": tail -f log/development/application.log
+  - "solr.log": ssh epic-localvm "tail -f /opt/solr/server/logs/solr.log"
   - "importer.log (dev)": tail -f log/development/importer.log
-  - "mailer.log (dev)": ssh epic-localvm "tail -f /srv/epic/shared/log/development/mailer.log" 
   - "deployment.log": tail -f log/deployment.log
-  - "catalina.out": ssh epic-localvm "tail -f /var/log/tomcat/solr.log"
   - sass: ./script/assets.sh watch
