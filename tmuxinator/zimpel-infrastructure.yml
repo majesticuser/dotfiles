@@ -1,0 +1,13 @@
+# ~/.tmuxinator/zimpel-infrastructure.yml
+
+name: zimpel-infrastructure
+root: /Users/virginio/projects/zimpel-infrastructure
+
+# We reset the RBENV environment variables as tmuxinator sets the RBENV environment variables and in consequence .ruby-version files would not be evaluated.
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
+
+windows:
+  - editor: vim
+  - shell: 
