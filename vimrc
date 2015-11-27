@@ -249,11 +249,11 @@ let test#ruby#rspec#executable = 'bundle exec rspec'
 let test#javascript#jasmine#executable = 'npm test'
 let test#javascript#jasmine#file_pattern = '.*Spec\.coffee$'
 
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+nmap <leader>t :TestNearest<CR>
+nmap <leader>T :TestFile<CR>
+nmap <leader>a :TestSuite<CR>
+nmap <leader>l :TestLast<CR>
+nmap <leader>g :TestVisit<CR>
 
 " ----- "
 " vimux "
