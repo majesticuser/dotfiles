@@ -22,3 +22,4 @@ windows:
   - "importer.log (dev)": tail -f log/importer.log
   - "deployment.log": tail -f log/deployment.log
   - sass: ./script/assets.sh watch
+  - browsersync: sleep 5 && browser-sync start --browser "google chrome" --browser firefox --browser "safari" --proxy "localhost:3000" --startPath "/styleguide2.0" --port 3001 --ui-port 3002 --files "./public/compiled/stylesheets/*.css, ./app/views/**/*.haml"
