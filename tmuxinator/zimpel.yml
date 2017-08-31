@@ -3,23 +3,13 @@
 name: zimpel
 root: /Users/virginio/projects/zimpel
 
-# Starts the epic-localvm before proceding with tmux session. We need to wait until ssh is avalailable.
-# We reset the RBENV environment variables as tmuxinator sets the RBENV environment variables and in consequence .ruby-version files would not be evaluated.
 pre:
-  - export RBENV_DIR=
-  - export RBENV_VERSION=
-  - vmrun start /Users/virginio/Documents/Virtual\ Machines.localized/zimpel-neu.vmwarevm/zimpel-neu.vmx nogui && ssh epic-localvm "echo 'Started epic-localvm'"
+  - vagrant up
 
 windows:
   - editor: vim
   - shell: 
-  - vm: ssh root@epic-localvm  
-  - "rails s": bundle exec rails s #BUNDLE_GEMFILE=Gemfile.devel bundle exec rails s
-  - "rails c": bundle exec rails c #BUNDLE_GEMFILE=Gemfile.devel bundle exec rails c
+  - foreman: foreman start
+  - vm: ssh 192.168.144.30  
   - "application.log (test)": tail -f log/test_application.log
   - "application.log (dev)": tail -f log/application.log
-  - "solr.log": ssh epic-localvm "tail -f /opt/solr/server/logs/solr.log"
-  - "importer.log (dev)": tail -f log/importer.log
-  - "deployment.log": tail -f log/deployment.log
-  - sass: ./script/assets.sh watch
-  # - browsersync: sleep 5 && browser-sync start --browser "google chrome" --browser firefox --browser "safari" --proxy "localhost:3000" --startPath "/styleguide2.0" --port 3001 --ui-port 3002 --files "./public/compiled/stylesheets/*.css, ./app/views/**/*.haml"
