@@ -53,7 +53,10 @@ Plugin 'tpope/vim-endwise'
 Plugin 'janko-m/vim-test'
 Plugin 'vim-scripts/Markdown'
 Plugin 'scrooloose/syntastic'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'ap/vim-css-color'
+Plugin 'ruanyl/coverage.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            
@@ -70,8 +73,7 @@ syntax on
 " A more german keyboard friendly mapleader
 let mapleader = ","
 
-" swap files will be saved in the following directory
-:set dir=~/tmp
+set noswapfile
 
 au BufRead,BufNewFile *.thor set filetype=ruby
 
@@ -245,9 +247,8 @@ map <C-b> :CtrlPBuffer<CR>
 let test#strategy = "vimux"
 
 let test#ruby#rspec#executable = 'bundle exec rspec'
-
-let test#javascript#jasmine#executable = 'npm test'
-let test#javascript#jasmine#file_pattern = '.*Spec\.coffee$'
+" let test#javascript#mocha#executable = 'yarn jest'
+let test#javascript#jest#options = '-- --collectCoverage --coverageReporters json'
 
 nmap <leader>t :TestNearest<CR>
 nmap <leader>T :TestFile<CR>
@@ -255,14 +256,23 @@ nmap <leader>a :TestSuite<CR>
 nmap <leader>l :TestLast<CR>
 nmap <leader>g :TestVisit<CR>
 
+let g:coverage_json_report_path = 'coverage/coverage-final.json'
+" let g:coverage_sign_covered = '⦿'
+
+" Don't update automatically update coverage report due to flickering icon
+let g:coverage_interval = 123456789
+
+let g:coverage_show_covered = 0
+let g:coverage_show_uncovered = 1
+
 " ----- "
 " vimux "
 " ----- "
 
-" let g:VimuxOrientation = "h"
-" let g:VimuxHeight = "50"
-let g:VimuxOrientation = "v"
-let g:VimuxHeight = "40"
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "50"
+" let g:VimuxOrientation = "v"
+" let g:VimuxHeight = "40"
 map <leader>vl :VimuxRunLastCommand<cr>
 map <leader>vi :VimuxInspectRunner<cr>
 map <leader>vq :VimuxCloseRunner<cr>
