@@ -3,16 +3,16 @@
 # --------------------- #
 
 export EDITOR="vim"
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":/Applications/riak/rel/riak/bin:$PATH
+export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":/Applications/riak/rel/riak/bin:$PATH
 export NODE_PATH=/usr/local/lib/node_modules
 
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-export DOCKER_CERT_PATH=/Users/virginio/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
+# export DOCKER_CERT_PATH=/Users/virginio/.boot2docker/certs/boot2docker-vm
+# export DOCKER_TLS_VERIFY=1
+# export DOCKER_HOST=tcp://192.168.59.103:2376
 
 # colored grep
 export GREP_OPTIONS='--color=auto'
@@ -56,6 +56,8 @@ function cdl() {
 # ---------------- #
 # Auto completions #
 # ---------------- #
+
+[ -f /usr/local/opt/dvm/dvm.sh ] && . /usr/local/opt/dvm/dvm.sh
 
 # This was prompted to be installed by the cdargs brew formula
 if [ -f /usr/local/etc/bash_completion.d/cdargs-bash.sh ];
