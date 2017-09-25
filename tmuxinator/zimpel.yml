@@ -3,13 +3,14 @@
 name: zimpel
 root: /Users/virginio/projects/zimpel
 
-pre:
+on_project_start:
   - vagrant up
+
+on_project_stop:
+  - vagrant halt
 
 windows:
   - editor: vim
   - shell: 
   - foreman: foreman start
   - vm: ssh 192.168.144.30  
-  - "application.log (test)": tail -f log/test_application.log
-  - "application.log (dev)": tail -f log/application.log
