@@ -23,40 +23,46 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'skwp/greplace.vim'
 Plugin 'tpope/vim-commentary'
-Plugin 'Lokaltog/vim-easymotion'
+
+" Plugin 'Lokaltog/vim-easymotion'
+
+" Git wrapper: Gblame, Gbrowse, Glog, Gstatus, ...
 Plugin 'tpope/vim-fugitive'
+" Support for Gbrowse
+Plugin 'tpope/vim-rhubarb'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
-"Plugin 'vim-scripts/taglist.vim'
 "Plugin 'henrik/vim-yaml-flattener'
 
 " Editing plugins
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-"Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'jwhitley/vim-matchit'
+
+" Required by vim-textobj-rubyblock
+" Plugin 'kana/vim-textobj-user'
+" Plugin 'nelstrom/vim-textobj-rubyblock'
+
+" Plugin 'tpope/vim-surround'
+" Plugin 'godlygeek/tabular'
+" Plugin 'ecomba/vim-ruby-refactoring'
+
+" Required by vim-textobj-rubyblock
+" Plugin 'jwhitley/vim-matchit'
+
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Townk/vim-autoclose'
 
 " Color/theme plugins
 Plugin 'vim-scripts/Lucius'
-Plugin 'tomasr/molokai'
-Plugin 'chriskempson/vim-tomorrow-theme'
 
 " Syntax/language/framework plugins
 Plugin 'tpope/vim-rails'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-endwise'
 Plugin 'janko-m/vim-test'
+Plugin 'ruanyl/coverage.vim'
 Plugin 'vim-scripts/Markdown'
 Plugin 'scrooloose/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ap/vim-css-color'
-Plugin 'ruanyl/coverage.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            
@@ -82,6 +88,8 @@ au BufRead,BufNewFile *.thor set filetype=ruby
 " matching function is mapped to the CursorMoved au-Command by default.
 let g:loaded_matchparen = 1
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
 " ----------- "
 " colorscheme "
 " ----------- "
@@ -95,13 +103,6 @@ colorscheme lucius
 "LuciusBlack
 "LuciusDark
 "LuciusDarkHighContrast
-
-"colorscheme Tomorrow-Night
-"colorscheme Tomorrow-Night-Eighties
-
-" colorscheme molokai
-" let g:rehash256 = 1
-" let g:molokai_original = 1
 
 " ---------- "
 " appearance "
@@ -128,7 +129,7 @@ set scrolloff=3 " Show 3 lines of context around the cursor.
 " ------- "
 
 " Load the matchit plugin. (needed for 'nelstrom/vim-textobj-rubyblock' Plugin)
-runtime macros/matchit.vim
+" runtime macros/matchit.vim
 
 set autoindent
 set tabstop=2 " Global tab width.
@@ -207,12 +208,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " easymotion "
 " ---------- "
 
-let g:EasyMotion_leader_key = 'ö'
+" let g:EasyMotion_leader_key = 'ö'
 
 " same color as search highlight color
-hi EasyMotionTarget ctermbg=214 ctermfg=238
-hi EasyMotionTarget2First ctermbg=214 ctermfg=238
-hi EasyMotionTarget2Second ctermbg=214 ctermfg=238
+" hi EasyMotionTarget ctermbg=214 ctermfg=238
+" hi EasyMotionTarget2First ctermbg=214 ctermfg=238
+" hi EasyMotionTarget2Second ctermbg=214 ctermfg=238
 
 " ----- "
 " ctrlp "
@@ -246,22 +247,17 @@ map <C-b> :CtrlPBuffer<CR>
 " basic | vimux
 let test#strategy = "vimux"
 
-let test#ruby#rspec#executable = 'bundle exec rspec'
-" let test#javascript#mocha#executable = 'yarn jest'
-let test#javascript#jest#options = '-- --collectCoverage --coverageReporters json'
-
 nmap <leader>t :TestNearest<CR>
 nmap <leader>T :TestFile<CR>
 nmap <leader>a :TestSuite<CR>
 nmap <leader>l :TestLast<CR>
 nmap <leader>g :TestVisit<CR>
 
-let g:coverage_json_report_path = 'coverage/coverage-final.json'
-" let g:coverage_sign_covered = '⦿'
+let test#ruby#rspec#executable = 'spring rspec'
 
+let g:coverage_json_report_path = 'coverage/coverage-final.json'
 " Don't update automatically update coverage report due to flickering icon
 let g:coverage_interval = 123456789
-
 let g:coverage_show_covered = 0
 let g:coverage_show_uncovered = 1
 
