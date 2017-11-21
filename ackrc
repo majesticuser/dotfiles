@@ -10,11 +10,16 @@
 --ignore-dir=assets/.bundle
 --ignore-dir=documentation
 --ignore-dir=tmp
---ignore-dir=public/javascripts/compiled
+--ignore-dir=public
 --ignore-dir=log
 --ignore-dir=.idea
 --ignore-dir=gitstats
+--ignore-dir=.git
 --ignore-dir=coverage
 --ignore-dir=.yardoc
+--ignore-dir=.vagrant
+--ignore-dir=coverage
+--ignore-dir=data
+--ignore-dir=node_modules
 
 --ignore-file=is:tags
