@@ -83,6 +83,11 @@ set noswapfile
 
 au BufRead,BufNewFile *.thor set filetype=ruby
 
+" Make scrolling faster.
+" The following enables the old (faster) vim regexp modus.
+autocmd FileType ruby setlocal re=1
+autocmd FileType haml setlocal re=1
+
 " This is a hack for disabling the highlighting of matching parentheses that
 " is also fundamental for speed improvements in Terminal Vim as the paren
 " matching function is mapped to the CursorMoved au-Command by default.
