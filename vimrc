@@ -258,7 +258,7 @@ nmap <leader>a :TestSuite<CR>
 nmap <leader>l :TestLast<CR>
 nmap <leader>g :TestVisit<CR>
 
-let test#ruby#rspec#executable = 'spring rspec'
+let test#ruby#rspec#executable = 'spring rspec --format documentation'
 
 let g:coverage_json_report_path = 'coverage/coverage-final.json'
 " Don't update automatically update coverage report due to flickering icon
