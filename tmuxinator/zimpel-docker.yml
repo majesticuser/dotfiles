@@ -4,6 +4,7 @@ name: zimpel
 root: /Users/virginio/projects/zimpel-docker
 
 on_project_start:
+  - cd build && ./build-images.sh base && ./build-images.sh test
   - docker-compose up -d
 
 on_project_stop:
