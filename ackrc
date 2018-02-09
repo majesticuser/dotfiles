@@ -6,6 +6,7 @@
 
 --ignore-dir=.rsync_cache
 --ignore-dir=.sass-cache
+--ignore-dir=.bundle
 --ignore-dir=vendor/bundle
 --ignore-dir=assets/.bundle
 --ignore-dir=documentation
