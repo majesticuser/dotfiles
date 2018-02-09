@@ -1,0 +1,15 @@
+# ~/.tmuxinator/zimpel-ci.yml
+
+name: zimpel-ci
+root: /Users/virginio/projects/zimpel-ci
+
+on_project_start:
+  - open http://localhost:8153
+
+on_project_stop:
+  - docker-compose down
+
+windows:
+  - editor: vim
+  - shell: 
+  - rebuild_and_restart: ./bin/rebuild_and_restart.sh
