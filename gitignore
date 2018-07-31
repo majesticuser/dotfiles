@@ -16,7 +16,6 @@ public/stylesheets/compiled/
 *.dmg
 *.gz
 *.iso
-*.jar
 *.rar
 *.tar
 *.zip
