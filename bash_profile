@@ -4,7 +4,6 @@
 
 export EDITOR="vim"
 export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":/Applications/riak/rel/riak/bin:$PATH
-export NODE_PATH=/usr/local/lib/node_modules
 
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
 export CLICOLOR=1
@@ -23,6 +22,9 @@ HISTSIZE=10000 # Size of the history in memory
 PROMPT_COMMAND="history -a" # this command will be executed after each exectuted command
 export HISTSIZE PROMPT_COMMAND
 shopt -s histappend # this enables appending commands immediately to the history
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 # ------- #
 # Aliases #
@@ -94,6 +96,8 @@ fi
 # To list the current bindings user "bind -P"
 # set -o vi
 
-source /usr/local/opt/nvm/nvm.sh
-
 ssh-add
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/virginio/.sdkman"
+[[ -s "/Users/virginio/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/virginio/.sdkman/bin/sdkman-init.sh"
