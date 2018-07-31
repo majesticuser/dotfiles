@@ -3,20 +3,15 @@
 name: zimpel
 root: /Users/virginio/projects/zimpel
 
-on_project_start:
-  - docker-compose up -d
-
 on_project_stop:
-  - docker-compose down
+  - cd docker/run/compose/dev/ && docker-compose down && cd ../test/ && docker-compose down
 
 windows:
   - editor: vim
   - shell: 
-  - build: cd build/  
-  - foreman: foreman start
-  - solr_dev log: docker logs zimpeldocker_zimpel-solr-dev_1 --follow
-  - postgres_dev log: docker logs zimpeldocker_zimpel-postgres-dev_1 --follow
-  - solr_test log: docker logs zimpeldocker_zimpel-solr-test_1 --follow
-  - postgres_test log: docker logs zimpeldocker_zimpel-postgres-test_1 --follow
+  - foreman: bundle exec foreman start
+  - storybook: cd frontend/ && npm run storybook
+  - docker-dev: cd docker/run/compose/dev/ && ZIMPEL_VERSION=latest docker-compose up
+  - docker-test: cd docker/run/compose/test/ && ZIMPEL_VERSION=latest docker-compose up
   - stats: docker stats
   - events: docker events
