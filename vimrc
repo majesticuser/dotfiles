@@ -63,6 +63,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ap/vim-css-color'
+Plugin 'styled-components/vim-styled-components' 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            
