@@ -20,6 +20,8 @@ displayHeader 'GEMS' 1>> $LOG
 displayHeader 'BREW' 1>> $LOG
 /usr/local/bin/brew update 1>> $LOG
 /usr/local/bin/brew upgrade 1>> $LOG
+/usr/local/bin/brew cask upgrade 1>> $LOG
+/usr/local/bin/brew cleanup 1>> $LOG
 
 displayHeader 'VIM' 1>> $LOG
 /usr/bin/vim -c PluginUpdate -c quitall >> $LOG 2>&1
