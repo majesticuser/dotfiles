@@ -59,7 +59,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'janko-m/vim-test'
 Plugin 'ruanyl/coverage.vim'
 Plugin 'vim-scripts/Markdown'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ap/vim-css-color'
@@ -100,11 +100,11 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " colorscheme "
 " ----------- "
 
-let g:lucius_style = "light"
+let g:lucius_style = "dark"
 let g:solarized_termcolors=256
 let g:solarized_visibility = "low"
 
-colorscheme lucius
+colorscheme Lucius
 "LuciusLightHighContrast
 "LuciusBlack
 "LuciusDark
@@ -161,6 +161,18 @@ set showmode " Display the mode you're in.
 set backspace=indent,eol,start " Intuitive backspacing.
 
 set hidden " Handle multiple buffers better.
+
+" ES-Linting is too slow
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 " ------ "
 " search "
