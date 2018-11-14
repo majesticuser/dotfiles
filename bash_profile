@@ -3,7 +3,7 @@
 # --------------------- #
 
 export EDITOR="vim"
-export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":/Applications/riak/rel/riak/bin:$PATH
+export PATH=/usr/local/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:/Users/virginio/bin:"/Applications/VMware Fusion.app/Contents/Library":/Applications/riak/rel/riak/bin:$PATH
 
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
 export CLICOLOR=1
@@ -43,16 +43,12 @@ alias vim='mvim -v'
 # Functions #
 # --------- #
 
-function vmware () {
-  if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "please provide vm name and action {start|stop|restart|...}"
-    return
-  fi
-  vmrun $2 ~/Documents/Virtual\ Machines.localized/$1.vmwarevm/$1.vmx nogui
-}
-
 function cdl() {
   cd $1; l
+}
+
+function devil-scripts() {
+  source ~/projects/devel-scripts/bash_profile
 }
 
 # ---------------- #
