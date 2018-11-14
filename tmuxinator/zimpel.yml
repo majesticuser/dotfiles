@@ -9,6 +9,10 @@ on_project_stop:
 windows:
   - editor: vim
   - shell: 
+  - frontend: cd frontend/
+  - jest-watch: cd frontend/ && npm test -- --watch --notify 
+  # - lint-watch: cd frontend/ && npm run lint-watch 
+  - lint-watch: cd frontend/ && node_modules/.bin/esw --watch --clear --ext .jsx,.js src/
   - foreman: bundle exec foreman start
   - storybook: cd frontend/ && npm run storybook
   - docker-dev: cd docker/run/compose/dev/ && ZIMPEL_VERSION=latest docker-compose up
