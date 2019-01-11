@@ -37,7 +37,6 @@ alias l='ls -FAlah'
 alias b="bundle exec"
 alias g="git"
 alias ducks='du -cks * | sort -nr | grep -v total | head -n 10'
-alias vim='mvim -v'
 
 # --------- #
 # Functions #
