@@ -21,6 +21,7 @@ Plugin 'gmarik/Vundle.vim'
 " Helpers
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf'
 Plugin 'skwp/greplace.vim'
 Plugin 'tpope/vim-commentary'
 
