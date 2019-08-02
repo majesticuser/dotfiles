@@ -15,7 +15,7 @@ call vundle#begin()
 " http://stackoverflow.com/questions/12213597/how-to-see-which-plugins-are-making-vim-slow
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'gmarik/Vundle.vim'
 
 " Helpers
@@ -63,12 +63,13 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ap/vim-css-color'
-Plugin 'styled-components/vim-styled-components' 
+Plugin 'styled-components/vim-styled-components'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/tsuquyomi'
+" Plugin 'Quramy/tsuquyomi'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            
+call vundle#end()
 filetype plugin indent on    " required for vundle
 
 " ---------------- "
@@ -144,6 +145,10 @@ set tabstop=2 " Global tab width.
 set shiftwidth=2 " And again, related.
 set expandtab " Use spaces instead of tabs
 
+" Auto remove trailing whitespaces
+" https://vim.fandom.com/wiki/Remove_unwanted_spaces
+autocmd BufWritePre * :%s/\s\+$//e
+
 " --------- "
 " clipboard "
 " --------- "
@@ -206,11 +211,35 @@ function! MapCR()
 endfunction
 call MapCR()
 
+" -------------- "
+" search with ag "
+" -------------- "
+" see https://thoughtbot.com/blog/faster-grepping-in-vim#using-ag-arguments
+" see https://github.com/ggreer/the_silver_searcher
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+  nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+  " bind \ (backward slash) to grep shortcut
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+  nnoremap \ :Ag<SPACE>
+endif
+
 " -------- "
 " greplace "
 " -------- "
 
-set grepprg=ack
 let g:grep_cmd_opts = '--noheading'
 
 " -------- "
@@ -273,7 +302,8 @@ nmap <leader>a :TestSuite<CR>
 nmap <leader>l :TestLast<CR>
 nmap <leader>g :TestVisit<CR>
 
-let test#ruby#rspec#executable = 'spring rspec --format documentation'
+" let test#ruby#rspec#executable = 'spring rspec --format documentation'
+let test#ruby#rspec#executable = 'docker-compose exec api bundle exec rspec'
 
 let g:coverage_json_report_path = 'coverage/coverage-final.json'
 " Don't update automatically update coverage report due to flickering icon
