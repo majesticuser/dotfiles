@@ -1,0 +1,19 @@
+# ~/.tmuxinator/storybox.yml
+
+name: storybox
+root: /Users/virginio/projects/storytool
+
+on_project_start:
+  - docker-compose up -d db api frontend
+
+on_project_stop:
+  - docker-compose stop
+
+windows:
+  - editor: vim
+  - shell:
+  - js-test: cd frontend && npm test
+  - api: docker-compose exec api bash
+  - api-log: docker logs storytool_api_1 --follow
+  - fe-log: docker logs storytool_frontend_1 --follow
+  - db-log: docker logs storytool_db_1 --follow
