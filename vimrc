@@ -276,6 +276,11 @@ let g:ctrlp_custom_ignore = {
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:0,max:15,results:15'
 
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtHistory(1)': [''],
+  \ 'PrtInsert()': ['<c-p>']
+  \ }
+
 map <C-b> :CtrlPBuffer<CR>
 
 " ---------------- "
