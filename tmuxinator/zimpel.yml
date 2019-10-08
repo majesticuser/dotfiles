@@ -4,13 +4,14 @@ name: zimpel
 root: /Users/virginio/projects/zimpel
 
 on_project_stop:
-  - bin/compose dev down && bin/compose test down
+  - bin/compose local development down && bin/compose local test down
 
 windows:
   - editor: vim
-  - shell: 
-  - frontend: cd frontend/
-  - foreman: bundle exec foreman start
-  - storybook: cd frontend/ && npm run storybook
-  - docker-dev: bin/compose dev up
-  - docker-test: bin/compose test up
+  - rails-dir: cd rails-app/
+  - frontend-dir: cd frontend/
+  - rails: cd rails-app/ && bundle exec rails s
+  - frontend: cd frontend/ && npm run serve
+  - storybook: cd frontend/ && npm run storybook -- --port=9001
+  - docker-dev: bin/compose local development up postgres redis solr
+  - docker-test: bin/compose local test up postgres redis solr keycloak
