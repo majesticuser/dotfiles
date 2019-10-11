@@ -3,15 +3,26 @@
 name: zimpel
 root: /Users/virginio/projects/zimpel
 
+on_project_start:
+  - bin/compose local test up -d postgres redis solr keycloak
+  - bin/compose local development up -d postgres redis solr
+  - cd rails-app/ && bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
+
 on_project_stop:
   - bin/compose local development down && bin/compose local test down
 
 windows:
-  - editor: vim
+  - rails-editor: cd rails-app/ && vim
+  - frontend-editor: cd frontend/ && vim
   - rails-dir: cd rails-app/
   - frontend-dir: cd frontend/
   - rails: cd rails-app/ && bundle exec rails s
   - frontend: cd frontend/ && npm run serve
   - storybook: cd frontend/ && npm run storybook -- --port=9001
-  - docker-dev: bin/compose local development up postgres redis solr
-  - docker-test: bin/compose local test up postgres redis solr keycloak
+  - log-dev-solr: bin/compose local development logs -f solr
+  - log-dev-postgres: bin/compose local development logs -f postgres
+  - log-dev-redis: bin/compose local development logs -f redis
+  - log-test-solr: bin/compose local test logs -f solr
+  - log-test-postgres: bin/compose local test logs -f postgres
+  - log-test-redis: bin/compose local test logs -f redis
+  - log-test-keycloak: bin/compose local test logs -f keycloak
