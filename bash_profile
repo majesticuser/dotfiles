@@ -87,6 +87,8 @@ if which rbenv &> /dev/null; then
   eval "$(rbenv init -)"
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # Use vi bindings instead of the default emacs bindings
 # To list the current bindings user "bind -P"
 # set -o vi
@@ -94,5 +96,5 @@ fi
 ssh-add
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/virginio/.sdkman"
-[[ -s "/Users/virginio/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/virginio/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="/Users/virginio/.sdkman"
+# [[ -s "/Users/virginio/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/virginio/.sdkman/bin/sdkman-init.sh"
