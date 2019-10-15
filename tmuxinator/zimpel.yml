@@ -1,7 +1,7 @@
 # ~/.tmuxinator/zimpel.yml
 
 name: zimpel
-root: /Users/virginio/projects/zimpel
+root: ~/projects/zimpel
 
 on_project_start:
   - bin/compose local test up -d postgres redis solr keycloak
@@ -12,13 +12,25 @@ on_project_stop:
   - bin/compose local development down && bin/compose local test down
 
 windows:
-  - rails-editor: cd rails-app/ && vim
-  - frontend-editor: cd frontend/ && vim
+  - rails-editor:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - vim
+  - frontend-editor:
+      root: ~/projects/zimpel/frontend
+      panes:
+        - vim
   - rails-dir: cd rails-app/
   - frontend-dir: cd frontend/
-  - rails: cd rails-app/ && bundle exec rails s
-  - frontend: cd frontend/ && npm run serve
-  - storybook: cd frontend/ && npm run storybook -- --port=9001
+  - rails:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - bundle exec rails s
+  - frontend:
+      root: ~/projects/zimpel/frontend
+      panes:
+        - npm run serve
+        - npm run storybook -- --port=9001
   - log-dev-solr: bin/compose local development logs -f solr
   - log-dev-postgres: bin/compose local development logs -f postgres
   - log-dev-redis: bin/compose local development logs -f redis
