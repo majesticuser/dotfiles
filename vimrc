@@ -207,10 +207,12 @@ vnoremap <silent> # :<C-U>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " Clear the search highlighting when hitting return
-function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
-endfunction
-call MapCR()
+" function! MapCR()
+"   nnoremap <cr> :nohlsearch<cr>
+" endfunction
+" call MapCR()
+" nnoremap <Leader><space> :noh<cr>
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
 " -------------- "
 " search with ag "
@@ -308,8 +310,7 @@ nmap <leader>a :TestSuite<CR>
 nmap <leader>l :TestLast<CR>
 nmap <leader>g :TestVisit<CR>
 
-" let test#ruby#rspec#executable = 'spring rspec --format documentation'
-let test#ruby#rspec#executable = 'docker-compose exec api bundle exec rspec'
+let test#ruby#rspec#executable = 'bundle exec spring rspec --format documentation'
 
 let g:coverage_json_report_path = 'coverage/coverage-final.json'
 " Don't update automatically update coverage report due to flickering icon
