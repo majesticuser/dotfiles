@@ -95,6 +95,8 @@ fi
 
 ssh-add
 
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/virginio/.sdkman"
 [[ -s "/Users/virginio/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/virginio/.sdkman/bin/sdkman-init.sh"
