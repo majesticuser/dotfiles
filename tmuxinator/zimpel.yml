@@ -9,8 +9,7 @@ on_project_start:
   - cd rails-app/ && bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
 
 on_project_stop:
-  - kill -INT $(cat rails-app/tmp/pids/server.pid)
-  - deploy-docker/bin/compose local development down && deploy-docker/bin/compose local test down
+  - pkill -9 -f puma && deploy-docker/bin/compose local development down && deploy-docker/bin/compose local test down
 
 windows:
   - editor:
