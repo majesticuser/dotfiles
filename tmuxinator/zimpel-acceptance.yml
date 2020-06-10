@@ -1,0 +1,35 @@
+# ~/.tmuxinator/zimpel-acceptance.yml
+
+name: zimpel-acceptance
+root: ~/projects/zimpel
+
+on_project_start:
+  - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak fake-smtp
+  - cd rails-app/
+  - bundle exec dotenv -f .env.acceptance.local "bundle exec thor dev:db:migrate"
+  - bundle exec dotenv -f .env.acceptance.local "bundle exec rails db:seed"
+  - bundle exec dotenv -f .env.acceptance.local "bundle exec thor solr:reindex"
+
+on_project_stop:
+  - pkill -9 -f puma && deploy-docker/bin/compose local acceptance down
+
+windows:
+  - shell:
+      root: ~/projects/zimpel
+  - frontend development server:
+      root: ~/projects/zimpel/frontend
+      panes:
+        - npm run serve
+  - rails server acceptance:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - RAILS_ENV=acceptance bundle exec rails s --port=2998 --pid=tmp/pids/acceptance-server.pid
+  - mailer:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - bundle exec dotenv -f .env.acceptance.local "bundle exec thor mailer:start"
+  - log-acceptance-solr: deploy-docker/bin/compose local acceptance logs -f solr
+  - log-acceptance-postgres: deploy-docker/bin/compose local acceptance logs -f postgres
+  - log-acceptance-redis: deploy-docker/bin/compose local acceptance logs -f redis
+  - log-acceptance-keycloak: deploy-docker/bin/compose local acceptance logs -f keycloak
+  - log-acceptance-fake-smtp: deploy-docker/bin/compose local acceptance logs -f fake-smtp

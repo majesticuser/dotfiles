@@ -1,0 +1,20 @@
+# ~/.tmuxinator/zimpel-test.yml
+
+name: zimpel-test
+root: ~/projects/zimpel
+
+on_project_start:
+  - deploy-docker/bin/compose local test up -d postgres redis solr keycloak mars-mariadb
+  - cd rails-app/
+  - bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
+
+on_project_stop:
+  - deploy-docker/bin/compose local test down
+
+windows:
+  - shell:
+      root: ~/projects/zimpel
+  - log-test-solr: deploy-docker/bin/compose local test logs -f solr
+  - log-test-postgres: deploy-docker/bin/compose local test logs -f postgres
+  - log-test-redis: deploy-docker/bin/compose local test logs -f redis
+  - log-test-keycloak: deploy-docker/bin/compose local test logs -f keycloak

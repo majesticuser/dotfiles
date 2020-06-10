@@ -1,8 +1,0 @@
-# ~/.tmuxinator/zimpel-infrastructure.yml
-
-name: zimpel-infrastructure
-root: /Users/virginio/projects/zimpel-infrastructure
-
-windows:
-  - editor: vim
-  - shell: 

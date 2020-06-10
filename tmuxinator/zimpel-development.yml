@@ -1,0 +1,29 @@
+# ~/.tmuxinator/zimpel-development.yml
+
+name: zimpel-development
+root: ~/projects/zimpel
+
+on_project_start:
+  - deploy-docker/bin/compose local development up -d postgres redis solr mars-mariadb fake-smtp backup
+
+on_project_stop:
+  - pkill -9 -f puma && deploy-docker/bin/compose local development down
+
+windows:
+  - shell:
+      root: ~/projects/zimpel
+  - frontend development server:
+      root: ~/projects/zimpel/frontend
+      panes:
+        - npm run serve
+  - frontend storybook server:
+      root: ~/projects/zimpel/frontend
+      panes:
+        - npm run storybook -- --port=9001
+  - rails server development:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - RAILS_ENV=development bundle exec rails s
+  - log-dev-solr: deploy-docker/bin/compose local development logs -f solr
+  - log-dev-postgres: deploy-docker/bin/compose local development logs -f postgres
+  - log-dev-redis: deploy-docker/bin/compose local development logs -f redis
