@@ -3,7 +3,7 @@
 # --------------------- #
 
 export EDITOR="vim"
-export PATH=/usr/local/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:~/Library/Python/3.7/bin:$PATH
+export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:~/Library/Python/3.7/bin:$PATH
 
 # http://www.geekology.co.za/blog/2009/04/enabling-bash-terminal-directory-file-color-highlighting-mac-os-x/
 export CLICOLOR=1
