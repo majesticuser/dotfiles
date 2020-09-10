@@ -4,7 +4,7 @@ name: zimpel-test
 root: ~/projects/zimpel
 
 on_project_start:
-  - deploy-docker/bin/compose local test up -d postgres redis solr keycloak mars-mariadb
+  - deploy-docker/bin/compose local test up -d postgres redis solr keycloak keycloak-configurator mars-mariadb
   - cd rails-app/
   - bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
 

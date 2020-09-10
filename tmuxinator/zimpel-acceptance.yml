@@ -4,7 +4,7 @@ name: zimpel-acceptance
 root: ~/projects/zimpel
 
 on_project_start:
-  - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak fake-smtp
+  - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak keycloak-configurator fake-smtp
   - cd rails-app/
   - bundle exec dotenv -f .env.acceptance.local "bundle exec thor dev:db:migrate"
   - bundle exec dotenv -f .env.acceptance.local "bundle exec rails db:seed"

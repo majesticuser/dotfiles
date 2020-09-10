@@ -4,8 +4,8 @@ name: zimpel
 root: ~/projects/zimpel
 
 on_project_start:
-  - deploy-docker/bin/compose local test up -d postgres redis solr keycloak mars-mariadb
-  - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak fake-smtp
+  - deploy-docker/bin/compose local test up -d postgres redis solr keycloak keycloak-configurator mars-mariadb
+  - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak keycloak-configurator fake-smtp
   - deploy-docker/bin/compose local development up -d postgres redis solr mars-mariadb fake-smtp backup
   - cd rails-app/
   - bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
