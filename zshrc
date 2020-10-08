@@ -11,7 +11,7 @@ fi
 export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/virginio/.oh-my-zsh"
+export ZSH="/Users/virginiocarfagno/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -147,6 +147,11 @@ JIRA_RAPID_BOARD=true
 
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
