@@ -6,8 +6,9 @@ root: ~/projects/zimpel
 on_project_start:
   - deploy-docker/bin/compose local test up -d postgres redis solr keycloak keycloak-configurator mars-mariadb
   - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak keycloak-configurator fake-smtp
-  - deploy-docker/bin/compose local development up -d postgres redis solr mars-mariadb fake-smtp backup
+  - deploy-docker/bin/compose local development up -d postgres redis solr keycloak keycloak-configurator mars-mariadb fake-smtp backup
   - cd rails-app/
+  - ruby --version
   - bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
   - bundle exec dotenv -f .env.acceptance.local "bundle exec thor dev:db:migrate"
   - bundle exec dotenv -f .env.acceptance.local "bundle exec rails db:seed"
@@ -31,6 +32,14 @@ windows:
       root: ~/projects/zimpel/rails-app
       panes:
         - RAILS_ENV=development bundle exec rails s
+  - mailer development:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - bundle exec dotenv -f .env.development.local "bundle exec thor mailer:start"
+  - sidekiq-worker development:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - bundle exec sidekiq -q high,2 -q default -c 10 | tee ./log/sidekiq.log
   - rails server acceptance:
       root: ~/projects/zimpel/rails-app
       panes:
@@ -39,6 +48,10 @@ windows:
       root: ~/projects/zimpel/rails-app
       panes:
         - bundle exec dotenv -f .env.acceptance.local "bundle exec thor mailer:start"
+  - sidekiq-worker acceptance:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - RAILS_ENV=acceptance bundle exec sidekiq -q high,2 -q default -c 10
   - log-dev-solr: deploy-docker/bin/compose local development logs -f solr
   - log-dev-postgres: deploy-docker/bin/compose local development logs -f postgres
   - log-dev-redis: deploy-docker/bin/compose local development logs -f redis
