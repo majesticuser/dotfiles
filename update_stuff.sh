@@ -13,9 +13,9 @@ LOG=/Users/virginiocarfagno/log/update_stuff.log
 echo '' > $LOG # Clear logfile
 displayHeader 'Execution date: '$(date +"%Y-%m-%d") 1>> $LOG
 
-displayHeader 'GEMS' 1>> $LOG
-/Users/virginiocarfagno/.rbenv/shims/gem update 1>> $LOG
-/Users/virginiocarfagno/.rbenv/shims/gem clean 1>> $LOG
+# displayHeader 'GEMS' 1>> $LOG
+# /Users/virginiocarfagno/.rbenv/shims/gem update 1>> $LOG
+# /Users/virginiocarfagno/.rbenv/shims/gem clean 1>> $LOG
 
 displayHeader 'BREW' 1>> $LOG
 /usr/local/bin/brew update 1>> $LOG
