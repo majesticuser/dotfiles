@@ -5,17 +5,13 @@ root: ~/projects/zimpel
 
 on_project_start:
   - deploy-docker/bin/compose local test up -d postgres redis solr keycloak keycloak-configurator mars-mariadb
-  - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak keycloak-configurator fake-smtp
   - deploy-docker/bin/compose local development up -d postgres redis solr keycloak keycloak-configurator mars-mariadb fake-smtp backup
   - cd rails-app/
   - ruby --version
   - bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
-  - bundle exec dotenv -f .env.acceptance.local "bundle exec thor dev:db:migrate"
-  - bundle exec dotenv -f .env.acceptance.local "bundle exec rails db:seed"
-  - bundle exec dotenv -f .env.acceptance.local "bundle exec thor solr:reindex"
 
 on_project_stop:
-  - pkill -9 -f puma && deploy-docker/bin/compose local development down && deploy-docker/bin/compose local test down && deploy-docker/bin/compose local acceptance down
+  - pkill -9 -f puma && deploy-docker/bin/compose local development down && deploy-docker/bin/compose local test down
 
 windows:
   - shell:
@@ -39,19 +35,7 @@ windows:
   - sidekiq-worker development:
       root: ~/projects/zimpel/rails-app
       panes:
-        - bundle exec sidekiq -q high,2 -q default -c 10 | tee ./log/sidekiq.log
-  - rails server acceptance:
-      root: ~/projects/zimpel/rails-app
-      panes:
-        - RAILS_ENV=acceptance bundle exec rails s --port=2998 --pid=tmp/pids/acceptance-server.pid
-  - mailer acceptance:
-      root: ~/projects/zimpel/rails-app
-      panes:
-        - bundle exec dotenv -f .env.acceptance.local "bundle exec thor mailer:start"
-  - sidekiq-worker acceptance:
-      root: ~/projects/zimpel/rails-app
-      panes:
-        - RAILS_ENV=acceptance bundle exec sidekiq -q high,2 -q default -c 10
+        - bundle exec sidekiq
   - log-dev-solr: deploy-docker/bin/compose local development logs -f solr
   - log-dev-postgres: deploy-docker/bin/compose local development logs -f postgres
   - log-dev-redis: deploy-docker/bin/compose local development logs -f redis
@@ -63,8 +47,3 @@ windows:
   - log-test-redis: deploy-docker/bin/compose local test logs -f redis
   - log-test-keycloak: deploy-docker/bin/compose local test logs -f keycloak
   - log-test-mars-mariadb: deploy-docker/bin/compose local test logs -f mars-mariadb
-  - log-acceptance-solr: deploy-docker/bin/compose local acceptance logs -f solr
-  - log-acceptance-postgres: deploy-docker/bin/compose local acceptance logs -f postgres
-  - log-acceptance-redis: deploy-docker/bin/compose local acceptance logs -f redis
-  - log-acceptance-keycloak: deploy-docker/bin/compose local acceptance logs -f keycloak
-  - log-acceptance-fake-smtp: deploy-docker/bin/compose local acceptance logs -f fake-smtp

@@ -6,6 +6,7 @@ root: ~/projects/zimpel
 on_project_start:
   - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak keycloak-configurator fake-smtp
   - cd rails-app/
+  - ruby --version
   - bundle exec dotenv -f .env.acceptance.local "bundle exec thor dev:db:migrate"
   - bundle exec dotenv -f .env.acceptance.local "bundle exec rails db:seed"
   - bundle exec dotenv -f .env.acceptance.local "bundle exec thor solr:reindex"
@@ -15,8 +16,12 @@ on_project_stop:
 
 windows:
   - shell:
-      root: ~/projects/zimpel
-  - frontend development server:
+      root: ~/projects/zimpel/acceptance-tests
+  - cypress:
+      root: ~/projects/zimpel/acceptance-tests
+      panes:
+        - npm test
+  - frontend server:
       root: ~/projects/zimpel/frontend
       panes:
         - npm run serve
@@ -24,10 +29,14 @@ windows:
       root: ~/projects/zimpel/rails-app
       panes:
         - RAILS_ENV=acceptance bundle exec rails s --port=2998 --pid=tmp/pids/acceptance-server.pid
-  - mailer:
+  - mailer acceptance:
       root: ~/projects/zimpel/rails-app
       panes:
         - bundle exec dotenv -f .env.acceptance.local "bundle exec thor mailer:start"
+  - sidekiq-worker acceptance:
+      root: ~/projects/zimpel/rails-app
+      panes:
+        - RAILS_ENV=acceptance bundle exec sidekiq
   - log-acceptance-solr: deploy-docker/bin/compose local acceptance logs -f solr
   - log-acceptance-postgres: deploy-docker/bin/compose local acceptance logs -f postgres
   - log-acceptance-redis: deploy-docker/bin/compose local acceptance logs -f redis
