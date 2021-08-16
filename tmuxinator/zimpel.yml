@@ -5,7 +5,7 @@ root: ~/projects/zimpel
 
 on_project_start:
   - deploy-docker/bin/compose local test up -d postgres redis solr keycloak keycloak-configurator mars-mariadb
-  - deploy-docker/bin/compose local development up -d postgres redis solr keycloak keycloak-configurator mars-mariadb fake-smtp backup
+  - deploy-docker/bin/compose local development up -d postgres redis solr keycloak keycloak-configurator fake-smtp
   - cd rails-app/
   - ruby --version
   - bundle exec dotenv -f .env.test.local "bundle exec thor dev:db:migrate"
@@ -39,11 +39,14 @@ windows:
   - log-dev-solr: deploy-docker/bin/compose local development logs -f solr
   - log-dev-postgres: deploy-docker/bin/compose local development logs -f postgres
   - log-dev-redis: deploy-docker/bin/compose local development logs -f redis
-  - log-dev-mars-mariadb: deploy-docker/bin/compose local development logs -f mars-mariadb
+  - log-dev-keycloak: deploy-docker/bin/compose local development logs -f keycloak
+  - log-dev-keycloak-configurator: deploy-docker/bin/compose local development logs -f keycloak-configurator
+  - log-dev-keycloak-postgres: deploy-docker/bin/compose local development logs -f keycloak-postgres
   - log-dev-fake-smtp: deploy-docker/bin/compose local development logs -f fake-smtp
-  - log-dev-backup: deploy-docker/bin/compose local development logs -f backup
   - log-test-solr: deploy-docker/bin/compose local test logs -f solr
   - log-test-postgres: deploy-docker/bin/compose local test logs -f postgres
   - log-test-redis: deploy-docker/bin/compose local test logs -f redis
   - log-test-keycloak: deploy-docker/bin/compose local test logs -f keycloak
+  - log-test-keycloak-configurator: deploy-docker/bin/compose local test logs -f keycloak-configurator
+  - log-test-keycloak-postgres: deploy-docker/bin/compose local test logs -f keycloak-postgres
   - log-test-mars-mariadb: deploy-docker/bin/compose local test logs -f mars-mariadb
