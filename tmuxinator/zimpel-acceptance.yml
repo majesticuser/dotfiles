@@ -4,10 +4,10 @@ name: zimpel-acceptance
 root: ~/projects/zimpel
 
 on_project_start:
-  - deploy-docker/bin/compose local acceptance up -d postgres redis solr keycloak keycloak-configurator fake-smtp
+  - deploy-docker/bin/compose local acceptance up -d postgres redis solr fake-smtp
   - cd rails-app/
   - ruby --version
-  - bundle exec dotenv -f .env.acceptance.local "bundle exec thor dev:db:migrate"
+  - bundle exec dotenv -f .env.acceptance.local "bundle exec rails db:schema:load"
   - bundle exec dotenv -f .env.acceptance.local "bundle exec rails db:seed"
   - bundle exec dotenv -f .env.acceptance.local "bundle exec thor solr:reindex"
 
@@ -40,5 +40,4 @@ windows:
   - log-acceptance-solr: deploy-docker/bin/compose local acceptance logs -f solr
   - log-acceptance-postgres: deploy-docker/bin/compose local acceptance logs -f postgres
   - log-acceptance-redis: deploy-docker/bin/compose local acceptance logs -f redis
-  - log-acceptance-keycloak: deploy-docker/bin/compose local acceptance logs -f keycloak
   - log-acceptance-fake-smtp: deploy-docker/bin/compose local acceptance logs -f fake-smtp

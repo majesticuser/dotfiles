@@ -8,7 +8,8 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:~/Library/Python/3.7/bin:$PATH
-export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:$PATH
+export PATH=/Users/virginiocarfagno/.cargo/bin/:usr/local/opt/openssl@2.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:$PATH
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/virginiocarfagno/.oh-my-zsh"
