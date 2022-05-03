@@ -29,10 +29,6 @@ windows:
       root: ~/projects/zimpel/rails-app
       panes:
         - RAILS_ENV=acceptance bundle exec rails s --port=2998 --pid=tmp/pids/acceptance-server.pid
-  - mailer acceptance:
-      root: ~/projects/zimpel/rails-app
-      panes:
-        - bundle exec dotenv -f .env.acceptance.local "bundle exec thor mailer:start"
   - sidekiq-worker acceptance:
       root: ~/projects/zimpel/rails-app
       panes:
