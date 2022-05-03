@@ -5,7 +5,7 @@ root: ~/projects/zimpel
 
 on_project_start:
   - deploy-docker/bin/compose local test up -d postgres redis solr mars-mariadb
-  - deploy-docker/bin/compose local development up -d postgres redis solr fake-smtp backup
+  - deploy-docker/bin/compose local development up -d
   - cd rails-app/
   - ruby --version
   - bundle exec dotenv -f .env.test.local "bundle exec rails db:schema:load"
@@ -28,10 +28,6 @@ windows:
       root: ~/projects/zimpel/rails-app
       panes:
         - RAILS_ENV=development bundle exec rails s
-  - mailer development:
-      root: ~/projects/zimpel/rails-app
-      panes:
-        - bundle exec dotenv -f .env.development.local "bundle exec thor mailer:start"
   - sidekiq-worker development:
       root: ~/projects/zimpel/rails-app
       panes:
