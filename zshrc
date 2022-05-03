@@ -85,7 +85,7 @@ plugins=(
   catimg
   colored-man-pages
   colorize
-  copydir
+  copypath
   copyfile
   cp
   dash
@@ -100,7 +100,7 @@ plugins=(
   ng
   npm
   nvm
-  osx
+  macos
   rails
   rbenv
   ruby
@@ -110,7 +110,6 @@ plugins=(
   vi-mode
   wd
   web-search
-  zsh_reload
   zsh-interactive-cd
 )
 
@@ -141,6 +140,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Flutter
+export PATH="$PATH:/Applications/flutter/bin"
 
 # JIRA
 JIRA_NAME=virginio
