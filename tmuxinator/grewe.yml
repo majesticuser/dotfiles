@@ -1,0 +1,19 @@
+# ~/.tmuxinator/grewe.yml
+
+name: grewe
+root: ~/projects/grewe-gruppe-app
+
+on_project_start:
+  - docker compose --profile api --profile grewe-services up -d
+
+on_project_stop:
+  - docker compose --profile api --profile grewe-services down
+
+windows:
+  - shell:
+  - app: yarn workspace app start-local
+  - storybook: yarn workspace app storybook
+  - log-dev-api: docker compose logs -f api
+  - log-dev-postgres: docker compose logs -f postgres
+  - log-dev-cache: docker compose logs -f cache
+  - log-dev-employees-service-postgres: docker compose logs -f employees-service-postgres
