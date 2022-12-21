@@ -1,0 +1,17 @@
+# ~/.tmuxinator/grewe.yml
+
+name: grewe-e2e
+root: ~/projects/grewe-gruppe-app
+
+on_project_start:
+  - TAG=latest ./bin/compose-e2e build
+  - TAG=latest ./bin/compose-e2e up -d
+
+on_project_stop:
+  - ./bin/compose-e2e down
+
+windows:
+  - shell:
+  - app-e2e: yarn workspace app start-local-e2e
+  - log-e2e-api: docker compose -p grewe-e2e logs -f api
+  - log-e2e-postgres: docker compose -p grewe-e2e logs -f postgres

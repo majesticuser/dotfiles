@@ -4,24 +4,19 @@ name: grewe
 root: ~/projects/grewe-gruppe-app
 
 on_project_start:
+  - ./bin/compose-dev build
   - ./bin/compose-dev up -d
-  - ./bin/compose-e2e up -d
 
 on_project_stop:
   - ./bin/compose-dev down
-  - ./bin/compose-e2e down
 
 windows:
   - shell:
-  - cypress: yarn workspace e2e run cypress open
   - app-dev: yarn workspace app start-local
-  - app-e2e: yarn workspace app start-local-e2e
   - storybook: yarn workspace app storybook
-  - log-dev-api: docker compose -p grewe-dev logs -f api
-  - log-dev-postgres: docker compose -p grewe-dev logs -f postgres
-  - log-dev-employees-service: docker compose -p grewe-dev logs -f employees-service
-  - log-dev-employees-service-postgres: docker compose -p grewe-dev logs -f employees-service-postgres
-  - log-dev-employees-service-cache: docker compose -p grewe-dev logs -f cache
-  - log-dev-construction-sites-service: docker compose -p grewe-dev logs -f construction-sites-service
-  - log-e2e-api: docker compose -p grewe-e2e logs -f api
-  - log-e2e-postgres: docker compose -p grewe-e2e logs -f postgres
+  - log-dev-api: docker compose logs -f api
+  - log-dev-postgres: docker compose logs -f postgres
+  - log-dev-employees-service: docker compose logs -f employees-service
+  - log-dev-employees-service-postgres: docker compose logs -f employees-service-postgres
+  - log-dev-employees-service-cache: docker compose logs -f cache
+  - log-dev-construction-sites-service: docker compose logs -f construction-sites-service
