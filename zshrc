@@ -85,6 +85,7 @@ plugins=(
   catimg
   colored-man-pages
   colorize
+  copybuffer
   copypath
   copyfile
   cp
@@ -102,9 +103,11 @@ plugins=(
   nvm
   macos
   rails
+  rand-quote
   rbenv
   ruby
   themes
+  thor
   timer
   tmuxinator
   vi-mode
