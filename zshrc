@@ -6,10 +6,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export PATH=/usr/local/opt/openssl@1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:~/Library/Python/3.7/bin:$PATH
-export PATH=/Users/virginiocarfagno/.cargo/bin/:usr/local/opt/openssl@2.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:$PATH
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# export PATH=/Users/virginiocarfagno/.cargo/bin/:usr/local/opt/openssl@2.1/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/mysql55/bin:~/bin:$PATH
+export PATH=~/bin:$PATH
+export PATH=/usr/local/opt/mysql55/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/Users/virginiocarfagno/.cargo/bin:$PATH
+export PATH=/usr/local/opt/openssl@1.1/bin:$PATH
+export PATH=/Users/virginiocarfagno/Library/Python/3.10/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/virginiocarfagno/.oh-my-zsh"
@@ -80,35 +84,31 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  alias-finder
-  bundler
-  catimg
-  colored-man-pages
-  colorize
-  copybuffer
+  # alias-finder
+  # bundler
+  # catimg
+  # colored-man-pages
+  colorize # ccat cless
+  copybuffer # ctrl-o
   copypath
   copyfile
-  cp
-  dash
+  # cp
+  # dash
   docker
   docker-compose
-  encode64
+  # encode64
   git
-  history
-  jira
-  jsontools
   last-working-dir
-  ng
+  # ng
   npm
   nvm
-  macos
-  rails
-  rand-quote
+  # rails
+  # rand-quote
   rbenv
-  ruby
-  themes
-  thor
-  timer
+  # ruby
+  # themes
+  # thor
+  # timer
   tmuxinator
   vi-mode
   wd
@@ -147,40 +147,54 @@ source $ZSH/oh-my-zsh.sh
 # Flutter
 export PATH="$PATH:/Applications/flutter/bin"
 
-# JIRA
-JIRA_NAME=virginio
-JIRA_RAPID_BOARD=true
-
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# # NVM
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# https://github.com/nvm-sh/nvm#zsh
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+# # https://github.com/nvm-sh/nvm#zsh
+# # place this after nvm initialization!
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Configure autocompletion for ansible scripts
+# autoload -U bashcompinit
+# bashcompinit
+# eval "$(register-python-argcomplete ansible)"
+# eval "$(register-python-argcomplete ansible-config)"
+# eval "$(register-python-argcomplete ansible-console)"
+# eval "$(register-python-argcomplete ansible-doc)"
+# eval "$(register-python-argcomplete ansible-galaxy)"
+# eval "$(register-python-argcomplete ansible-inventory)"
+# eval "$(register-python-argcomplete ansible-playbook)"
+# eval "$(register-python-argcomplete ansible-pull)"
+# eval "$(register-python-argcomplete ansible-vault)"
+
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
