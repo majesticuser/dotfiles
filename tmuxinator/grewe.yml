@@ -15,18 +15,18 @@ on_project_stop:
 windows:
   - shell:
   - app-dev: yarn workspace app start-local
-  - storybook: yarn workspace app storybook
-  - construction-sites-service: PORT=8154 yarn workspace construction-sites-service dev
-  - sage-service: PORT=8101 yarn workspace sage-service start
-  - azure-sync-service: AZURE_SYNC_SERVICE_PORT=8088 yarn workspace azure-sync-service dev
   - containers: TAG=latest ./bin/compose-dev up
+  # - storybook: yarn workspace app storybook
+  # - construction-sites-service: PORT=8154 yarn workspace construction-sites-service dev
+  # - sage-service: PORT=8101 yarn workspace sage-service start
+  # - azure-sync-service: AZURE_SYNC_SERVICE_PORT=8088 yarn workspace azure-sync-service dev
   # - puma: cd api/ && set -o allexport; source ../.env set +o allexport && OBJC_DISABLE_INITIALIZE_FORK_SAFETY=Yes DATABASE_URL=postgresql://postgres:password@localhost:5432/grewe_be_development WEB_CONCURRENCY=3 RAILS_MAX_THREADS=10 bundle exec rails s -p 3025
-  - log-dev-api: docker compose logs -f api
-  - log-dev-sidekiq: docker compose logs -f sidekiq
-  - log-dev-postgres: docker compose logs -f postgres
-  - log-dev-construction-sites-service: docker compose logs -f construction-sites-service
-  - log-dev-sage-service: docker compose logs -f sage-service
-  - log-dev-azure-sync-service: docker compose logs -f azure-sync-service
-  - log-dev-azure-sync-service-jobs: docker compose logs -f azure-sync-service
-  - log-dev-azure-sync-service-postgres: docker compose logs -f azure-sync-service-postgres
-  - log-dev-sidekiq-redis: docker compose logs -f sidekiq-redis
+  # - log-dev-api: docker compose logs -f api
+  # - log-dev-sidekiq: docker compose logs -f sidekiq
+  # - log-dev-postgres: docker compose logs -f postgres
+  # - log-dev-construction-sites-service: docker compose logs -f construction-sites-service
+  # - log-dev-sage-service: docker compose logs -f sage-service
+  # - log-dev-azure-sync-service: docker compose logs -f azure-sync-service
+  # - log-dev-azure-sync-service-jobs: docker compose logs -f azure-sync-service
+  # - log-dev-azure-sync-service-postgres: docker compose logs -f azure-sync-service-postgres
+  # - log-dev-sidekiq-redis: docker compose logs -f sidekiq-redis

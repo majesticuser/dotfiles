@@ -94,7 +94,7 @@ plugins=(
   copyfile
   # cp
   # dash
-  docker
+  # docker
   docker-compose
   # encode64
   git
@@ -107,7 +107,7 @@ plugins=(
   rbenv
   # ruby
   # themes
-  # thor
+ # thor
   # timer
   tmuxinator
   vi-mode

@@ -13,5 +13,6 @@ windows:
   - shell:
   - app-e2e: yarn workspace app start-local-e2e
   - containers: TAG=latest ./bin/compose-e2e up
+  - playwright ui: cd e2e/ && yarn workspace e2e playwright-local test --ui
   # - log-e2e-api: docker compose -p grewe-e2e logs -f api
   # - log-e2e-postgres: docker compose -p grewe-e2e logs -f postgres
