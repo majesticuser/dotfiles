@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+marker='<!-- code-review -->'
+
+usage() {
+  cat <<'EOF'
+threads list <pr>            unresolved review threads as JSON; "human" once a person wrote in the thread
+threads body <thread-id>     full text of the thread's first comment
+threads reply <thread-id>    reply with the text on stdin, marked as written by code-review
+threads approve <thread-id>  thumbs-up on the thread's first comment
+threads resolve <thread-id>  resolve the thread
+
+<pr> is a PR number in the current repo or a PR URL.
+EOF
+}
+
+list() {
+  local url owner repo number
+  url=$(gh pr view "$1" --json url --jq .url)
+  IFS=/ read -r _ _ _ owner repo _ number <<<"$url"
+  gh api graphql -f owner="$owner" -f repo="$repo" -F number="$number" -f query='
+    query($owner: String!, $repo: String!, $number: Int!) {
+      repository(owner: $owner, name: $repo) {
+        pullRequest(number: $number) {
+          reviewThreads(first: 100) {
+            pageInfo { hasNextPage }
+            nodes {
+              id isResolved isOutdated path line
+              comments(first: 100) {
+                pageInfo { hasNextPage }
+                nodes { author { login __typename } body url }
+              }
+            }
+          }
+        }
+      }
+    }' --jq '
+    .data.repository.pullRequest.reviewThreads
+    | if .pageInfo.hasNextPage then error("more than 100 review threads – the list would be incomplete") else .nodes end
+    | map(select(.isResolved | not) | {
+        id,
+        path,
+        line,
+        outdated: .isOutdated,
+        url: .comments.nodes[0].url,
+        authors: ([.comments.nodes[] | .author.login // "ghost"] | unique),
+        human: (.comments.pageInfo.hasNextPage or any(.comments.nodes[];
+          (.author.__typename // "User") != "Bot" and (.body | contains("'"$marker"'") | not))),
+        body: (.comments.nodes[0].body[:1500]),
+        truncated: ((.comments.nodes[0].body | length) > 1500)
+      })'
+}
+
+first_comment() {
+  gh api graphql -f id="$1" -f query='
+    query($id: ID!) {
+      node(id: $id) { ... on PullRequestReviewThread { comments(first: 1) { nodes { id body } } } }
+    }' --jq ".data.node.comments.nodes[0].$2"
+}
+
+body() {
+  first_comment "$1" body
+}
+
+reply() {
+  local text
+  text=$(cat)
+  [[ -n "$text" ]] || { echo "threads reply: no text on stdin" >&2; exit 1; }
+  gh api graphql -f id="$1" -f body="$text"$'\n\n'"$marker" -f query='
+    mutation($id: ID!, $body: String!) {
+      addPullRequestReviewThreadReply(input: {pullRequestReviewThreadId: $id, body: $body}) { comment { url } }
+    }' --jq '.data.addPullRequestReviewThreadReply.comment.url'
+}
+
+approve() {
+  gh api graphql -f id="$(first_comment "$1" id)" -f query='
+    mutation($id: ID!) {
+      addReaction(input: {subjectId: $id, content: THUMBS_UP}) { reaction { content } }
+    }' --jq '.data.addReaction.reaction.content'
+}
+
+resolve() {
+  gh api graphql -f id="$1" -f query='
+    mutation($id: ID!) {
+      resolveReviewThread(input: {threadId: $id}) { thread { isResolved } }
+    }' --jq '.data.resolveReviewThread.thread.isResolved'
+}
+
+case "${1:-}" in
+  list | body | reply | approve | resolve)
+    [[ $# -eq 2 ]] || { usage >&2; exit 2; }
+    "$1" "$2"
+    ;;
+  -h | --help) usage ;;
+  *) usage >&2; exit 2 ;;
+esac
